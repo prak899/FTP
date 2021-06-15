@@ -283,11 +283,11 @@ public class ImageUploadActivity extends AppCompatActivity {
             super.onPostExecute(result);
             dialog.dismiss();
             Log.d("XuploadX", "onPostExecute: Upload success"+result);
-            //Toast.makeText(ImageUploadActivity.this, "Image Upload Successfully", Toast.LENGTH_LONG).show();
             Snackbar snackbar = Snackbar
                     .make(findViewById(R.id.rootLayout), "Upload successfully", Snackbar.LENGTH_LONG);
             snackbar.show();
-            //finish();
+            civProfilePic.setBackgroundResource(R.drawable.ftp);
+            editTextImageName.setText(null);
         }
 
     }
@@ -301,7 +301,7 @@ public class ImageUploadActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[] { permission }, requestCode);
         }
         else {
-            Toast.makeText(this, "Permission already granted", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Permission already granted", Toast.LENGTH_SHORT).show();
         }
     }
     @Override
@@ -315,7 +315,7 @@ public class ImageUploadActivity extends AppCompatActivity {
 
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-                Toast.makeText(this, "Camera Permission Granted", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Camera Permission Granted", Toast.LENGTH_SHORT).show();
             }
             else {
                 Toast.makeText(this, "Camera Permission Denied", Toast.LENGTH_SHORT).show();
@@ -324,7 +324,7 @@ public class ImageUploadActivity extends AppCompatActivity {
         else if (requestCode == MY_PERMISSIONS_WRITE_EXTERNAL_STORAGE) {
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Storage Permission Granted", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Storage Permission Granted", Toast.LENGTH_SHORT).show();
             }
             else {
                 Toast.makeText(this, "Storage Permission Denied", Toast.LENGTH_SHORT).show();
