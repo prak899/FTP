@@ -3,9 +3,11 @@ package in.pm.ftp.FTP;
  * Created by Prakash on 6/13/2021.
  */
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,11 +18,15 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
@@ -34,6 +40,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import in.pm.ftp.R;
+import in.pm.ftp.Spalsh;
 
 
 public class ImageUploadActivity extends AppCompatActivity {
@@ -47,8 +54,12 @@ public class ImageUploadActivity extends AppCompatActivity {
     private static final String TAG = "XfileX";
     File file;
     ImageView civProfilePic;
-    ImageButton uploadimage;
+    Button uploadimage;
     TextInputEditText editTextImageName;
+
+
+    private static final int PERMISSION_REQUEST_CODE = 200;
+    private static final int MY_PERMISSIONS_WRITE_EXTERNAL_STORAGE = 300;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,11 +70,13 @@ public class ImageUploadActivity extends AppCompatActivity {
         civProfilePic = (ImageView) findViewById(R.id.profile_pic);
         editTextImageName = findViewById(R.id.imageName);
         uploadimage =  findViewById(R.id.uploadbtn);
-
+        checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, MY_PERMISSIONS_WRITE_EXTERNAL_STORAGE);
 
         dialog = new ImagePickUpDialog(this);
         civProfilePic.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+                checkPermission(Manifest.permission.CAMERA, PERMISSION_REQUEST_CODE);
                 dialog.show();
 
             }
@@ -230,8 +243,7 @@ public class ImageUploadActivity extends AppCompatActivity {
                 SimpleFTP ftp = new SimpleFTP();
 
                 // Connect to an FTP server on port 21.
-                ftp.connect("ip address", 21, "username", "password");
-
+                ftp.connect("103.86.176.188", 21, "CosmicVas", "CosmFTP@2016");
 
                 ftp.bin();
                 ftp.cwd("service.cosmicvas.com/ReciengEntry/RecievingIMG/");
@@ -281,4 +293,42 @@ public class ImageUploadActivity extends AppCompatActivity {
     }
 
 
+    // Function to check and request permission
+    public void checkPermission(String permission, int requestCode)
+    {
+        // Checking if permission is not granted
+        if (ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(this, new String[] { permission }, requestCode);
+        }
+        else {
+            Toast.makeText(this, "Permission already granted", Toast.LENGTH_SHORT).show();
+        }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults)
+    {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                Toast.makeText(this, "Camera Permission Granted", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Toast.makeText(this, "Camera Permission Denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+        else if (requestCode == MY_PERMISSIONS_WRITE_EXTERNAL_STORAGE) {
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Storage Permission Granted", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Toast.makeText(this, "Storage Permission Denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 }

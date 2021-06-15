@@ -7,4 +7,9 @@
     <color name="color_new_blue">#fff</color>
     <color name="text_color_white">#1694AC</color>
     <color name="text_color_white_alpha_06">#CA4646</color>
+
+    <color name="green_temp">#23A96E</color>
+    <color name="green_dark">#159204</color>
+    <color name="bright_green">#02D8B0</color>
+    <color name="button_green">#10a54a</color>
 </resources>

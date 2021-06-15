@@ -3,6 +3,7 @@ package in.pm.ftp.FTP;
 /**
  * Created by Prakash on 6/13/2021.
  */
+import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
@@ -21,19 +22,23 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import in.pm.ftp.R;
+import in.pm.ftp.Spalsh;
 
 
 public class ImagePickUpDialog extends Dialog {
     private Activity mContext;
     private static final int CAMERA_PIC_REQUEST = 2;
     private int OPEN_GALLERY_REQUEST = 1;
-
     public static String strAbsolutePath;
 
     public ImagePickUpDialog(Activity context) {
@@ -86,6 +91,7 @@ public class ImagePickUpDialog extends Dialog {
         GalleryLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(Intent.ACTION_PICK,
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 intent.setType("image/*");
@@ -176,4 +182,5 @@ public class ImagePickUpDialog extends Dialog {
         Log.e("XpathX", image.getAbsolutePath());
         return image;
     }
+
 }

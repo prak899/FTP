@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FTP</string>
+    <string name="btn_AddTitle">Upload</string>
 </resources>

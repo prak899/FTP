@@ -28,22 +28,26 @@
         android:layout_gravity="center"
         android:layout_margin="10dp"
         android:src="@drawable/ftp" />
-
-    <Button
-        android:visibility="gone"
-        android:layout_margin="10dp"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:id="@+id/uploadbtn1"
-        android:text="Upload Image" />
     <ImageButton
+        android:visibility="gone"
         android:layout_gravity="center"
-        android:id="@+id/uploadbtn"
+        android:id="@+id/uploadbtn1"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginEnd="16dp"
         android:src="@drawable/ic_info_check"
         android:background="?selectableItemBackgroundBorderless" />
-
+    <Button
+        android:drawableEnd="@drawable/ic_info_check"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        android:layout_gravity="center"
+        android:id="@+id/uploadbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_AddTitle"
+        android:background="@drawable/button_selector"
+        android:layout_margin="20dp"
+        />
 
 </LinearLayout>
