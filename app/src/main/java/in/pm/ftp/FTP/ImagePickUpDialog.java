@@ -1,6 +1,8 @@
 package in.pm.ftp.FTP;
 
-
+/**
+ * Created by Prakash on 6/13/2021.
+ */
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +47,8 @@ public class ImagePickUpDialog extends Dialog {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_image_pick_up_dialog);
         getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+
+
         ImageView imgPhotofromCamera = (ImageView) findViewById(R.id.custom_gallery_addform_camera);
         ImageView imgPhotofromGallary = (ImageView) findViewById(R.id.custom_gallery_addform_gallary);
         TextView txtAddfromCamera = (TextView) findViewById(R.id.addfromcamera);
@@ -51,14 +56,17 @@ public class ImagePickUpDialog extends Dialog {
         ImageView btncloseDialog = (ImageView) findViewById(R.id.custom_gallery_close);
         TextView txtCloseDialog = (TextView) findViewById(R.id.custom_gallery_tv_close);
 
-        imgPhotofromCamera.setOnClickListener(new View.OnClickListener() {
+        LinearLayout CameraLayout = (LinearLayout) findViewById(R.id.cam);
+        LinearLayout GalleryLayout = (LinearLayout) findViewById(R.id.gal);
+
+        CameraLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dispatchTakePictureIntent();
                 dismiss();
             }
         });
-        imgPhotofromGallary.setOnClickListener(new View.OnClickListener() {
+        GalleryLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(
@@ -75,7 +83,7 @@ public class ImagePickUpDialog extends Dialog {
 
             }
         });
-        txtAddfromgallary.setOnClickListener(new View.OnClickListener() {
+        GalleryLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_PICK,
@@ -89,13 +97,14 @@ public class ImagePickUpDialog extends Dialog {
 
             }
         });
-        txtAddfromCamera.setOnClickListener(new View.OnClickListener() {
+        CameraLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dispatchTakePictureIntent();
                 dismiss();
             }
         });
+
         btncloseDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,12 +118,10 @@ public class ImagePickUpDialog extends Dialog {
                 Toast.makeText(getContext(),"Choose camera or gallery to select image",Toast.LENGTH_LONG).show();
             }
         });
-//        show();
     }
 
     protected void dispatchTakePictureIntent() {
 
-        // Check if there is a camera.
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
 

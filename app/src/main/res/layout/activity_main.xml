@@ -7,10 +7,10 @@
     tools:context=".Spalsh">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_centerInParent="true"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@drawable/ftp"/>
 
     <TextView
         android:textAllCaps="true"

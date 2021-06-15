@@ -1,4 +1,7 @@
 package in.pm.ftp.FTP;
+/**
+ * Created by Prakash on 6/13/2021.
+ */
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -19,6 +22,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.jibble.simpleftp.SimpleFTP;
@@ -73,11 +77,8 @@ public class ImageUploadActivity extends AppCompatActivity {
 
                     strFileName = editTextImageName.getText().toString();
 
-
                     UploadFile async = new UploadFile();
                     async.execute();
-
-
 
                 }
                 else
@@ -202,7 +203,6 @@ public class ImageUploadActivity extends AppCompatActivity {
                     bmOptions.inSampleSize = scaleFactor;
                     bmOptions.inPurgeable = true;
 
-                    // imgAddPhoto.setVisibility(View.GONE);
                     civProfilePic.setVisibility(View.VISIBLE);
                     if (!ImagePickUpDialog.strAbsolutePath.isEmpty()) {
 
@@ -219,41 +219,33 @@ public class ImageUploadActivity extends AppCompatActivity {
         }
     }
 
-
-
-
-
-
     class UploadFile extends AsyncTask<File, Integer, String> {
         ProgressDialog dialog;
 
         @Override
         protected String doInBackground(File... params) {
-//             ftpClient=uploadingFilestoFtp();
             Log.e("FTP","doInBackground");
 
             try {
                 SimpleFTP ftp = new SimpleFTP();
 
                 // Connect to an FTP server on port 21.
+                ftp.connect("ip address", 21, "username", "password");
 
-                ftp.connect("103.86.176.188", 21, "CosmicVas", "CosmFTP@2016");
 
                 ftp.bin();
                 ftp.cwd("service.cosmicvas.com/ReciengEntry/RecievingIMG/");
-                // You can also upload from an InputStream, e.g.
                 Log.d(TAG, "doInBackground: " + strFileName+".jpg");
                 ftp.stor(new FileInputStream(new File(filePath)), strFileName + ".jpg");
-                //ftp.stor(someSocket.getInputStream(), "blah.dat");
-
-                // Quit from the FTP server.
                 ftp.disconnect();
-                Log.d("XconnectetionX", "doInBackground: Connected"+ftp);
+
 
             } catch (Exception e) {
                 e.printStackTrace();
-                Log.d("XerrorX", "doInBackground: error"+e);
-                //Toast.makeText(ImageUploadActivity.this, "Something Went Wrong...", Toast.LENGTH_LONG).show();
+
+                Snackbar snackbar = Snackbar
+                        .make(findViewById(R.id.rootLayout), "Something Went Wrong...", Snackbar.LENGTH_LONG);
+                snackbar.show();
                 dialog.dismiss();
             }
             return null;
@@ -279,8 +271,11 @@ public class ImageUploadActivity extends AppCompatActivity {
             super.onPostExecute(result);
             dialog.dismiss();
             Log.d("XuploadX", "onPostExecute: Upload success"+result);
-            Toast.makeText(ImageUploadActivity.this, "Image Upload Successfully", Toast.LENGTH_LONG).show();
-            finish();
+            //Toast.makeText(ImageUploadActivity.this, "Image Upload Successfully", Toast.LENGTH_LONG).show();
+            Snackbar snackbar = Snackbar
+                    .make(findViewById(R.id.rootLayout), "Upload successfully", Snackbar.LENGTH_LONG);
+            snackbar.show();
+            //finish();
         }
 
     }

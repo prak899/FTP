@@ -13,16 +13,15 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/ftp"
         android:layout_marginTop="10dp"
         android:padding="5dp"
         />
     <TextView
-
         android:id="@+id/custom_gallery_tv_close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select Image"
+        android:text="Choose one please"
         android:textSize="17sp"
         android:layout_gravity="center_horizontal"
         />
@@ -35,28 +34,22 @@
         android:weightSum="1">
 
         <LinearLayout
+            android:background="?selectableItemBackgroundBorderless"
+            android:id="@+id/cam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:orientation="horizontal"
-            android:layout_weight="0.5"
-            >
-
-
-
-
+            android:layout_weight="0.5">
 
             <ImageView
                 android:id="@+id/custom_gallery_addform_camera"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/cam"
                 android:padding="5dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                />
-
-
+                android:layout_marginTop="10dp" />
 
             <TextView
                 android:layout_gravity="center"
@@ -66,35 +59,26 @@
                 android:padding="10dp"
                 android:text="Camera"
                 android:textSize="17sp"
-                android:layout_marginTop="5dp"
-
-
-                />
+                android:layout_marginTop="5dp" />
         </LinearLayout>
 
         <LinearLayout
+            android:background="?selectableItemBackgroundBorderless"
+            android:id="@+id/gal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="1dp"
             android:layout_marginTop="10dp"
             android:orientation="horizontal"
             android:layout_weight="0.5">
-
-
-
             <ImageView
                 android:id="@+id/custom_gallery_addform_gallary"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/gal"
                 android:padding="5dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-
-
-                />
-
-
+                android:layout_marginTop="10dp" />
 
             <TextView
                 android:layout_gravity="center"
@@ -104,11 +88,7 @@
                 android:padding="10dp"
                 android:text="Gallery"
                 android:textSize="17sp"
-                android:layout_marginTop="5dp"
-                />
-
-
-
+                android:layout_marginTop="5dp" />
 
         </LinearLayout>
 
