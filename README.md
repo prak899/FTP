@@ -13,7 +13,7 @@ ftp.connect("your address", 21, "username", "Password");
 ```
 
 ## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Pull requests are always welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
@@ -25,6 +25,14 @@ Use the Android Studio *Build Variants* button to choose between **production** 
 This project is mantained by:
 * [Prakash Majhi](http://github.com/prak899)
 
+
+## Note
+Download this file and add it on libs/simpleftp.jar to continue...
+* [Download](https://github.com/prak899/FTP/raw/master/app/libs/simpleftp.jar)
+* And copy below line and paste it on your build.gradle
+```bash
+fcompile files('libs/simpleftp.jar')
+```
 
 ## Contributing
 
