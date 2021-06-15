@@ -1,15 +1,15 @@
 # FTP
 To sharing files to server over FTP
-# Wikipedia-news
-# Wikipedia
-All information on the way.
 
 ## Installation
-
 Use the version control to access it.
 
 ```bash
 https://github.com/prak899/FTP.git
+```
+
+```bash
+ftp.connect("your address", 21, "username", "Password");
 ```
 
 ## Contributing
