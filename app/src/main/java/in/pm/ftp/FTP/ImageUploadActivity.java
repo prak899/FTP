@@ -243,7 +243,7 @@ public class ImageUploadActivity extends AppCompatActivity {
                 SimpleFTP ftp = new SimpleFTP();
 
                 // Connect to an FTP server on port 21.
-                ftp.connect("103.86.176.188", 21, "CosmicVas", "CosmFTP@2016");
+                ftp.connect("your addres", 21, "username", "password");
 
                 ftp.bin();
                 ftp.cwd("service.cosmicvas.com/ReciengEntry/RecievingIMG/");
